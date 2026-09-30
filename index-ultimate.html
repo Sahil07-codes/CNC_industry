@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Manufacturing Excellence | 3D Precision Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-dark: #0a0e27;
+            --color-darker: #050810;
+            --color-steel: #1a2854;
+            --color-blue: #0f3a7d;
+            --color-accent: #ff6b35;
+            --color-accent-light: #ff8a52;
+            --color-light: #f5f5f5;
+            --color-text: #e0e0e0;
+            --color-text-light: #a0a0a0;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--color-darker) 0%, var(--color-dark) 50%, #0f1535 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--color-accent), #ff9f5a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-wrapper {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 70px;
+        }
+
+        .hero-bg-layers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-bg-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-bg-layer-1 {
+            background: radial-gradient(circle at 20% 50%, rgba(31, 71, 136, 0.4) 0%, transparent 50%);
+            animation: float-slow 20s ease-in-out infinite;
+        }
+
+        .hero-bg-layer-2 {
+            background: radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.2) 0%, transparent 50%);
+            animation: float-slow-reverse 25s ease-in-out infinite;
+        }
+
+        .hero-bg-layer-3 {
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.3) 100%);
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(50px) translateX(30px); }
+        }
+
+        @keyframes float-slow-reverse {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50px) translateX(-30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 50px;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            color: var(--color-light);
+            text-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .hero-text .accent-word {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--color-text);
+            margin-bottom: 40px;
+            line-height: 1.9;
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: white;
+            padding: 18px 45px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px rgba(255, 107, 53, 0.5);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            animation: slideInRight 1s ease-out;
+            z-index: 2;
+            perspective: 1200px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-3d-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(31, 71, 136, 0.15), rgba(255, 107, 53, 0.1));
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            box-shadow: 0 50px 100px rgba(255, 107, 53, 0.2), inset 0 0 50px rgba(31, 71, 136, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-3d-glow {
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+            filter: blur(60px);
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ===== IMAGE SHOWCASE SECTION ===== */
+        .showcase-section {
+            position: relative;
+            padding: 200px 50px;
+            background: linear-gradient(180deg, transparent 0%, rgba(31, 71, 136, 0.1) 100%);
+            overflow: hidden;
+        }
+
+        .showcase-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .showcase-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .showcase-card {
+            position: relative;
+            height: 450px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .showcase-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(31, 71, 136, 0.2), rgba(255, 107, 53, 0.1));
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+        }
+
+        .showcase-card:hover .showcase-card-inner {
+            border-color: var(--color-accent);
+            background: linear-gradient(135deg, rgba(31, 71, 136, 0.3), rgba(255, 107, 53, 0.2));
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.3);
+            transform: translateY(-10px) translateZ(20px) rotateX(5deg);
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: var(--transition);
+            filter: brightness(0.85);
+        }
+
+        .showcase-card:hover .showcase-image {
+            filter: brightness(1) contrast(1.1);
+            transform: scale(1.05);
+        }
+
+        .showcase-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.95) 100%);
+            z-index: 2;
+        }
+
+        .showcase-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            z-index: 5;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .showcase-card:hover .showcase-card-content {
+            transform: translateY(0);
+        }
+
+        .showcase-card-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-light);
+        }
+
+        .showcase-card-content p {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== ANIMATED IMAGE SECTION ===== */
+        .image-section {
+            position: relative;
+            padding: 150px 50px;
+            background: var(--color-dark);
+            overflow: hidden;
+        }
+
+        .image-section-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .image-section-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: var(--color-light);
+            line-height: 1.2;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            align-items: center;
+        }
+
+        .image-block {
+            position: relative;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        .image-block-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            overflow: hidden;
+            background: rgba(255, 107, 53, 0.05);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .image-block-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9) saturate(1.1);
+            transition: var(--transition);
+        }
+
+        .image-block-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .image-block:hover .image-block-inner {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.3), inset 0 0 30px rgba(255, 107, 53, 0.1);
+            transform: translateY(-5px) rotateY(2deg);
+        }
+
+        .image-block:hover .image-block-inner::before {
+            left: 100%;
+        }
+
+        .image-block:hover .image-block-inner img {
+            filter: brightness(1.1) saturate(1.3) contrast(1.1);
+            transform: scale(1.05);
+        }
+
+        .image-text {
+            padding: 40px;
+        }
+
+        .image-text h3 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--color-light);
+            line-height: 1.2;
+        }
+
+        .image-text p {
+            font-size: 16px;
+            color: var(--color-text);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .image-text ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .image-text li {
+            font-size: 15px;
+            color: var(--color-text);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .image-text li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* ===== SCROLL REVEAL SECTION ===== */
+        .features-section {
+            position: relative;
+            padding: 150px 50px;
+            background: var(--color-dark);
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 120px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: var(--color-light);
+            line-height: 1.2;
+        }
+
+        .features-header p {
+            font-size: 17px;
+            color: var(--color-text);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05), rgba(31, 71, 136, 0.05));
+            border: 1.5px solid rgba(255, 107, 53, 0.15);
+            border-radius: 4px;
+            transition: var(--transition);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            perspective: 1000px;
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-accent);
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(31, 71, 136, 0.1));
+            transform: translateY(-10px) rotateY(3deg) rotateX(2deg);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--color-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--color-text);
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            position: relative;
+            padding: 150px 50px;
+            background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-dark) 100%);
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float-slow 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+        }
+
+        .stat-box.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: var(--color-accent);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.25);
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--color-text);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            position: relative;
+            padding: 150px 50px;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-blue), var(--color-dark));
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float-slow-reverse 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .cta-section h2 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: var(--color-light);
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: var(--color-text);
+            margin-bottom: 50px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            border-radius: 2px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: white;
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-light);
+            border: 2px solid var(--color-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-light);
+            color: var(--color-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--color-darker), var(--color-dark));
+            margin: 10% auto;
+            padding: 60px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 4px;
+            width: 90%;
+            max-width: 500px;
+            animation: modalSlide 0.4s ease;
+            box-shadow: 0 50px 100px rgba(255, 107, 53, 0.3);
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: var(--color-text);
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: var(--color-accent);
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            color: var(--color-light);
+            margin-bottom: 30px;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--color-text);
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 107, 53, 0.2);
+            color: var(--color-light);
+            border-radius: 2px;
+            font-family: inherit;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 50px 50px;
+            text-align: center;
+            color: var(--color-text);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            background: var(--color-darker);
+            position: relative;
+            z-index: 5;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== PARALLAX & 3D SCROLL EFFECTS ===== */
+        .parallax-item {
+            transform-style: preserve-3d;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 30px;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                padding: 0 30px;
+            }
+
+            .hero-text h1 {
+                font-size: 52px;
+            }
+
+            .features-header h2 {
+                font-size: 42px;
+            }
+
+            .image-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 25px;
+                font-size: 11px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text p {
+                font-size: 15px;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-card {
+                height: 300px;
+            }
+
+            .features-section,
+            .image-section,
+            .cta-section,
+            .stats-section {
+                padding: 80px 20px;
+            }
+
+            .features-header h2,
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .image-block {
+                height: 350px;
+            }
+
+            .image-text h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PRECISION</div>
+        <ul class="nav-links">
+            <li><a href="#showcase">Services</a></li>
+            <li><a href="#images">Gallery</a></li>
+            <li><a href="#features">Capabilities</a></li>
+            <li><a href="#contact" onclick="openModal(); return false;">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-wrapper">
+        <div class="hero-bg-layers">
+            <div class="hero-bg-layer hero-bg-layer-1"></div>
+            <div class="hero-bg-layer hero-bg-layer-2"></div>
+            <div class="hero-bg-layer hero-bg-layer-3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Precision <span class="accent-word">Manufacturing</span> Engineered for <span class="accent-word">Excellence</span></h1>
+                <p>From concept to production, we deliver world-class precision manufacturing solutions. Advanced technology meets expert craftsmanship.</p>
+                <div class="hero-cta-group">
+                    <button class="hero-cta" onclick="openModal()">Get Your Quote</button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-3d-container" id="hero3dContainer">
+                    <div class="hero-3d-glow"></div>
+                    <canvas id="heroCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWCASE SECTION -->
+    <section class="showcase-section" id="showcase">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <div class="showcase-card-inner">
+                    <img src="images/1790743147749_image.png" alt="CNC Machining" class="showcase-image">
+                    <div class="showcase-card-overlay"></div>
+                </div>
+                <div class="showcase-card-content">
+                    <h3>CNC Precision Machining</h3>
+                    <p>5-axis precision with sub-micron tolerances. Complex geometries, rapid prototyping, aerospace-grade components.</p>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-card-inner">
+                    <img src="images/1790743153710_image.png" alt="Vertical Machining Center" class="showcase-image">
+                    <div class="showcase-card-overlay"></div>
+                </div>
+                <div class="showcase-card-content">
+                    <h3>Advanced Vertical Mills</h3>
+                    <p>High-precision vertical machining centers. Complex multi-axis programming. Production-ready capabilities.</p>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-card-inner">
+                    <img src="images/1790743159718_image.png" alt="Precision Equipment" class="showcase-image">
+                    <div class="showcase-card-overlay"></div>
+                </div>
+                <div class="showcase-card-content">
+                    <h3>Precision Equipment</h3>
+                    <p>State-of-the-art machinery for tight tolerance work. Optimized for quality and efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE GALLERY SECTION -->
+    <section class="image-section" id="images">
+        <div class="image-section-header">
+            <h2>Industrial Manufacturing in Action</h2>
+        </div>
+
+        <div class="image-row">
+            <div class="image-block parallax-item">
+                <div class="image-block-inner">
+                    <img src="images/1790743147749_image.png" alt="CNC Machine 1">
+                </div>
+            </div>
+            <div class="image-text">
+                <h3>Advanced CNC Machining</h3>
+                <p>Our state-of-the-art CNC machines deliver precision that counts. Every component is manufactured to exact specifications with zero tolerance for error.</p>
+                <ul>
+                    <li>5-Axis capability for complex parts</li>
+                    <li>Sub-micron tolerances (±0.0005")</li>
+                    <li>Material expertise: Aluminum, Steel, Titanium</li>
+                    <li>Rapid prototyping & production runs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="image-row">
+            <div class="image-text">
+                <h3>Professional Welding Operations</h3>
+                <p>Our expert welding team combines decades of experience with cutting-edge equipment. Every weld is inspected and certified for structural integrity.</p>
+                <ul>
+                    <li>MIG, TIG, and FCAW capabilities</li>
+                    <li>AWS certified welders on staff</li>
+                    <li>Custom fabrication & assembly</li>
+                    <li>Structural certification available</li>
+                </ul>
+            </div>
+            <div class="image-block parallax-item">
+                <div class="image-block-inner">
+                    <img src="images/1790743179521_image.png" alt="Welding">
+                </div>
+            </div>
+        </div>
+
+        <div class="image-row">
+            <div class="image-block parallax-item">
+                <div class="image-block-inner">
+                    <img src="images/1790743190601_image.png" alt="Injection Molding">
+                </div>
+            </div>
+            <div class="image-text">
+                <h3>High-Volume Injection Molding</h3>
+                <p>Fast-cycle injection molding with rapid tooling capabilities. From prototype to millions of units, we scale your production efficiently.</p>
+                <ul>
+                    <li>0.5-2.5 second cycle times</li>
+                    <li>Multiple material options available</li>
+                    <li>Rapid tooling for quick market entry</li>
+                    <li>Volume production from hundreds to millions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section" id="features">
+        <div class="features-header">
+            <h2>Why Industry Leaders Choose Us</h2>
+            <p>We combine cutting-edge technology with proven expertise. Every project receives our commitment to excellence.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Rapid turnaround without compromising quality. Most projects completed in 2-5 business days. Express services available.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Precision Guaranteed</h3>
+                <p>Tolerances to ±0.001". CMM inspection and SPC tracking on every production run. Full traceability guaranteed.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>ISO 9001 Certified</h3>
+                <p>Military-grade quality processes. Full traceability and documentation for compliance. Audit-ready at all times.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Competitive Pricing</h3>
+                <p>No hidden fees. Transparent quotes. Volume discounts available for large orders. Cost optimization included.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Reach</h3>
+                <p>International shipping available. We serve clients across North America, Europe, and Asia. Export capabilities ready.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Expert Support</h3>
+                <p>Dedicated engineers for your projects. DFM analysis and optimization included. Technical support always available.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">Parts Manufactured</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">On-Time Delivery</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Active Clients</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Manufacturing?</h2>
+            <p>Join hundreds of satisfied clients who trust us with their most critical projects. Get a free quote today.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="openModal()">Request Free Quote</button>
+                <a href="tel:+1234567890" class="btn btn-secondary">Call Us Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Premium Manufacturing Solutions. ISO 9001 Certified. <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <!-- Quote Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Get Your Free Quote</h2>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" required placeholder="Describe your project, materials, quantity, and timeline..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ===== MODAL =====
+        const modal = document.getElementById('quoteModal');
+
+        function openModal() {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! We will contact you within 24 hours.');
+            closeModal();
+            document.querySelector('form').reset();
+        }
+
+// ===== 3D HERO CANVAS: REAL METAL GEAR ASSEMBLY =====
+// Replace the old "3D HERO CANVAS" block (from `const canvas = ...` down to and
+// including the window 'resize' listener) with everything in this file.
+// Keep the "MOUSE 3D EFFECT ON HERO CONTAINER" block below it as it is.
+
+const canvas = document.getElementById('heroCanvas');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+camera.position.set(0, 0, 9);
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+renderer.setClearColor(0x000000, 0);
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- Studio reflections (this is what makes metal look real) ----------
+const pmrem = new THREE.PMREMGenerator(renderer);
+const envScene = new THREE.Scene();
+envScene.add(new THREE.Mesh(
+    new THREE.BoxGeometry(24, 24, 24),
+    new THREE.MeshBasicMaterial({ color: 0x0c1226, side: THREE.BackSide })
+));
+function addPanel(w, h, color, intensity, x, y, z) {
+    const mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(intensity), side: THREE.DoubleSide });
+    const panel = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    panel.position.set(x, y, z);
+    panel.lookAt(0, 0, 0);
+    envScene.add(panel);
+}
+addPanel(10, 3, 0xffffff, 4, 0, 9, 4);      // overhead softbox
+addPanel(3, 10, 0xffffff, 3, -9, 0, 3);     // left strip light
+addPanel(7, 7, 0xff6b35, 3, 9, -2, 3);      // warm workshop glow on the right
+addPanel(8, 2, 0x4d7cff, 2, 0, -9, -2);     // cool bounce from below
+scene.environment = pmrem.fromScene(envScene, 0.02).texture;
+pmrem.dispose();
+
+// ---------- Materials ----------
+const steel = new THREE.MeshStandardMaterial({ color: 0xc9d1dc, metalness: 1, roughness: 0.26 });
+const anodized = new THREE.MeshStandardMaterial({ color: 0xff6b35, metalness: 0.92, roughness: 0.34 });
+const darkSteel = new THREE.MeshStandardMaterial({ color: 0x59657a, metalness: 1, roughness: 0.4 });
+
+// ---------- Gear geometry (real teeth, bore, lightening holes, beveled edges) ----------
+function createGear({ radius, teeth, depth, thickness, bore, spokes }) {
+    const shape = new THREE.Shape();
+    const pitch = (Math.PI * 2) / teeth;
+    const profile = [[0, 0], [0.15, 1], [0.4, 1], [0.55, 0]]; // [fraction of pitch, 0 = root, 1 = tip]
+    let first = true;
+    for (let i = 0; i < teeth; i++) {
+        profile.forEach(([f, t]) => {
+            const a = i * pitch + f * pitch;
+            const r = radius + t * depth;
+            const x = Math.cos(a) * r;
+            const y = Math.sin(a) * r;
+            if (first) { shape.moveTo(x, y); first = false; } else { shape.lineTo(x, y); }
+        });
+    }
+    shape.closePath();
+
+    const boreHole = new THREE.Path();
+    boreHole.absarc(0, 0, bore, 0, Math.PI * 2, true);
+    shape.holes.push(boreHole);
+
+    for (let k = 0; k < spokes; k++) {
+        const a = (k / spokes) * Math.PI * 2;
+        const hole = new THREE.Path();
+        hole.absarc(Math.cos(a) * radius * 0.58, Math.sin(a) * radius * 0.58, radius * 0.17, 0, Math.PI * 2, true);
+        shape.holes.push(hole);
+    }
+
+    const geo = new THREE.ExtrudeGeometry(shape, {
+        depth: thickness,
+        bevelEnabled: true,
+        bevelThickness: 0.04,
+        bevelSize: 0.04,
+        bevelSegments: 3,
+        curveSegments: 24,
+    });
+    geo.center();
+    return geo;
+}
+
+// ---------- Hardware that orbits the gears ----------
+function createNutGeometry() {
+    const s = new THREE.Shape();
+    for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2;
+        const x = Math.cos(a) * 0.3;
+        const y = Math.sin(a) * 0.3;
+        if (i === 0) { s.moveTo(x, y); } else { s.lineTo(x, y); }
+    }
+    s.closePath();
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, 0.14, 0, Math.PI * 2, true);
+    s.holes.push(hole);
+    const geo = new THREE.ExtrudeGeometry(s, {
+        depth: 0.22, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 2, curveSegments: 24,
+    });
+    geo.center();
+    return geo;
+}
+
+function createBolt() {
+    const bolt = new THREE.Group();
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.16, 6), steel);
+    head.position.y = 0.3;
+    const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.6, 24), steel);
+    bolt.add(head, shaft);
+    return bolt;
+}
+
+// ---------- Assemble the scene ----------
+const group = new THREE.Group();
+
+const bigTeeth = 18;
+const smallTeeth = 11;
+const bigR = 1.5;
+const smallR = bigR * smallTeeth / bigTeeth;
+const toothDepth = 0.2;
+const centerDistance = bigR + smallR + toothDepth;
+const shift = 0.0; // nudge the whole assembly left/right if you want it off-centre
+
+const bigGear = new THREE.Mesh(
+    createGear({ radius: bigR, teeth: bigTeeth, depth: toothDepth, thickness: 0.5, bore: 0.3, spokes: 6 }),
+    steel
+);
+bigGear.position.set(-centerDistance / 2 + shift, 0, 0);
+
+const smallGear = new THREE.Mesh(
+    createGear({ radius: smallR, teeth: smallTeeth, depth: toothDepth, thickness: 0.5, bore: 0.2, spokes: 5 }),
+    anodized
+);
+smallGear.position.set(centerDistance / 2 + shift, 0, 0);
+
+const bigShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 1.5, 32), darkSteel);
+bigShaft.rotation.x = Math.PI / 2;
+bigShaft.position.copy(bigGear.position);
+
+const smallShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 1.5, 32), darkSteel);
+smallShaft.rotation.x = Math.PI / 2;
+smallShaft.position.copy(smallGear.position);
+
+group.add(bigGear, smallGear, bigShaft, smallShaft);
+
+// Starting phase so the teeth of one gear sit inside the gaps of the other
+const bigPitch = (Math.PI * 2) / bigTeeth;
+const smallPitch = (Math.PI * 2) / smallTeeth;
+const bigBase = -0.275 * bigPitch;
+const smallBase = Math.PI - 0.775 * smallPitch;
+
+// Orbiting hardware: hex bolt, bearing ring, hex nut
+const bearing = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 24, 48), darkSteel);
+const nut = new THREE.Mesh(createNutGeometry(), anodized);
+const orbiters = [createBolt(), bearing, nut];
+orbiters.forEach((o) => group.add(o));
+
+scene.add(group);
+
+// ---------- Metal dust / sparks ----------
+const sparkCount = 140;
+const sparkPositions = new Float32Array(sparkCount * 3);
+const sparkSpeeds = new Float32Array(sparkCount);
+for (let i = 0; i < sparkCount; i++) {
+    sparkPositions[i * 3] = (Math.random() - 0.5) * 7;
+    sparkPositions[i * 3 + 1] = (Math.random() - 0.5) * 7;
+    sparkPositions[i * 3 + 2] = (Math.random() - 0.5) * 4;
+    sparkSpeeds[i] = 0.1 + Math.random() * 0.25;
+}
+const sparkGeo = new THREE.BufferGeometry();
+sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPositions, 3));
+const sparks = new THREE.Points(sparkGeo, new THREE.PointsMaterial({
+    color: 0xff8a52,
+    size: 0.05,
+    transparent: true,
+    opacity: 0.85,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+}));
+scene.add(sparks);
+
+// ---------- Lights ----------
+const key = new THREE.DirectionalLight(0xffffff, 1.6);
+key.position.set(5, 6, 8);
+const rim = new THREE.DirectionalLight(0xff6b35, 1.2);
+rim.position.set(-6, -3, -4);
+const fill = new THREE.DirectionalLight(0x4d7cff, 0.5);
+fill.position.set(6, -5, 3);
+scene.add(key, rim, fill, new THREE.AmbientLight(0xffffff, 0.12));
+
+// ---------- Animation ----------
+const clock = new THREE.Clock();
+const gearSpeed = reduceMotion ? 0 : 0.5; // radians per second
+
+function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    const dt = Math.min(clock.getDelta(), 0.05);
+
+    // Gears mesh: opposite directions, speed inversely proportional to tooth count
+    const angle = t * gearSpeed;
+    bigGear.rotation.z = bigBase + angle;
+    smallGear.rotation.z = smallBase - angle * (bigTeeth / smallTeeth);
+
+    // Hardware orbits in a true 3D loop (passes in front of and behind the gears)
+    orbiters.forEach((obj, i) => {
+        const a = t * 0.3 + (i * Math.PI * 2) / 3;
+        obj.position.set(Math.cos(a) * 3.1, Math.sin(a) * 2.6, Math.sin(a * 1.0 + 1.2) * 1.6);
+        obj.rotation.x += 0.012;
+        obj.rotation.y += 0.016;
+    });
+
+    // Gentle camera-like sway so the metal catches the light
+    group.rotation.x = -0.4 + Math.sin(t * 0.5) * 0.07;
+    group.rotation.y = 0.45 + Math.sin(t * 0.35) * 0.1;
+
+    // Sparks drift upward and wrap around
+    const p = sparkGeo.attributes.position.array;
+    for (let i = 0; i < sparkCount; i++) {
+        p[i * 3 + 1] += sparkSpeeds[i] * 0.016 * (reduceMotion ? 0 : 1);
+        if (p[i * 3 + 1] > 3.5) { p[i * 3 + 1] = -3.5; }
+    }
+    sparkGeo.attributes.position.needsUpdate = true;
+
+    renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+});
+
+        // ===== MOUSE 3D EFFECT ON HERO CONTAINER =====
+        const hero3dContainer = document.getElementById('hero3dContainer');
+        
+        document.addEventListener('mousemove', (e) => {
+            const rect = hero3dContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const rotateX = (e.clientY - centerY) / 10;
+            const rotateY = (e.clientX - centerX) / 10;
+            
+            hero3dContainer.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${-rotateY}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            hero3dContainer.style.transform = 'perspective(1200px) rotateX(0) rotateY(0)';
+        });
+
+        // ===== SCROLL-BASED 3D TRANSFORMS & PARALLAX =====
+        let scrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+
+            // Parallax effect on image blocks
+            document.querySelectorAll('.parallax-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const windowCenter = window.innerHeight / 2;
+                const distance = elementCenter - windowCenter;
+                const parallax = distance * 0.1;
+
+                item.style.transform = `translateZ(${parallax}px) rotateX(${distance * 0.01}deg)`;
+            });
+        });
+
+        // ===== SCROLL REVEAL WITH OBSERVER =====
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-box').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== CONTINUOUS SCROLL ANIMATION =====
+        function updateScrollAnimations() {
+            document.querySelectorAll('.showcase-card-inner, .image-block-inner').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const windowCenter = window.innerHeight / 2;
+                const distance = elementCenter - windowCenter;
+                
+                // 3D rotation based on scroll position
+                const rotationX = (distance / window.innerHeight) * 5;
+                const rotationY = Math.sin(scrollY * 0.01 + Math.random()) * 2;
+                
+                el.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateZ(${Math.abs(distance) * 0.01}px)`;
+            });
+        }
+
+        window.addEventListener('scroll', updateScrollAnimations);
+        window.addEventListener('load', updateScrollAnimations);
+
+        // ===== HOVER 3D EFFECT =====
+        document.querySelectorAll('.showcase-card, .feature-card, .stat-box').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const rotateX = (e.clientY - centerY) / 20;
+                const rotateY = (e.clientX - centerX) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${-rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
